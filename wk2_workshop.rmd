@@ -19,8 +19,30 @@ knitr::opts_chunk$set(echo = TRUE)
 
 ```{r cars}
 stocks_data = readRDS("C:/Users/Beatrice NUS/Y3 Sem 2/DSE3101/Github projects/hello-world/data/wk2_stocks.rds")
+#df = readRDS("data/wk2_stocks.rds")
 
 paste("The cumulative returns of the S&P index during this period is", as.character(round(sum(stocks_data$SPY_returns), 2)))
 paste("The average daily returns of the S&P index during this period is", as.character(round(mean(stocks_data$SPY_returns), 2)))
 paste("The standard deviation of the daily returns of the S&P index during this period is", as.character(round(sd(stocks_data$SPY_returns), 2)))
+```
+
+# S&P prices
+```{r, message=FALSE}
+library(tidyverse)
+ggplot(data = stocks_data, aes(x=date, y=SPY_prices)) +
+  geom_line()
+
+```
+
+
+
+## S&P yearly returns
+```{r}
+stocks_data %>%
+  mutate(year = year(date)) %>%
+  group_by(year) %>%
+  summarise(yr_return = sum(SPY_returns*100)) %>%
+  ggplot(aes(x=year, y=yr_return)) +
+  geom_col()
+
 ```
