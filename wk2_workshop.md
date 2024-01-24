@@ -3,33 +3,26 @@ wk2-workshop
 Tan Kia Hwee. Beatrice
 2024-01-24
 
+- [R Markdown](#r-markdown)
+
 ## R Markdown
 
-This is an R Markdown document. Markdown is a simple formatting syntax
-for authoring HTML, PDF, and MS Word documents. For more details on
-using R Markdown see <http://rmarkdown.rstudio.com>.
-
-When you click the **Knit** button a document will be generated that
-includes both content as well as the output of any embedded R code
-chunks within the document. You can embed an R code chunk like this:
-
 ``` r
-summary(cars)
+stocks_data = readRDS("C:/Users/Beatrice NUS/Y3 Sem 2/DSE3101/Github projects/hello-world/data/wk2_stocks.rds")
+
+paste("The cumulative returns of the S&P index during this period is", as.character(round(sum(stocks_data$SPY_returns), 2)))
 ```
 
-    ##      speed           dist       
-    ##  Min.   : 4.0   Min.   :  2.00  
-    ##  1st Qu.:12.0   1st Qu.: 26.00  
-    ##  Median :15.0   Median : 36.00  
-    ##  Mean   :15.4   Mean   : 42.98  
-    ##  3rd Qu.:19.0   3rd Qu.: 56.00  
-    ##  Max.   :25.0   Max.   :120.00
+    ## [1] "The cumulative returns of the S&P index during this period is 2.18"
 
-## Including Plots
+``` r
+paste("The average daily returns of the S&P index during this period is", as.character(round(mean(stocks_data$SPY_returns), 2)))
+```
 
-You can also embed plots, for example:
+    ## [1] "The average daily returns of the S&P index during this period is 0"
 
-![](wk2_workshop_files/figure-gfm/pressure-1.png)<!-- -->
+``` r
+paste("The standard deviation of the daily returns of the S&P index during this period is", as.character(round(sd(stocks_data$SPY_returns), 2)))
+```
 
-Note that the `echo = FALSE` parameter was added to the code chunk to
-prevent printing of the R code that generated the plot.
+    ## [1] "The standard deviation of the daily returns of the S&P index during this period is 0.01"
